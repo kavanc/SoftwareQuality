@@ -18,7 +18,12 @@ public class Card {
             cards.add("QUEEN 10");
             cards.add("KING 10");
             //shuffle the cards for randomization
-            Collections.shuffle(cards);
+        long startTime = System.nanoTime();
+        Collections.shuffle(cards);
+        long endTime = System.nanoTime();
+        long time = endTime - startTime;
+        System.out.println("time for shuffling first hand " + time + "ns");
+
         String r = cards.get(0);
 
         return r;

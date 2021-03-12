@@ -6,7 +6,11 @@ public class BlackJack extends Deal{
         System.out.println("The goal is to get to your hand to equal 21");
         System.out.println("Any other value will result in a loss");
 
+        long startTime = System.nanoTime();
         String[] firsthand = deal();
+        long endTime = System.nanoTime();
+        long time = endTime - startTime;
+        System.out.println("time for dealing hand " + time + "ns");
 
         int totalfirst = currentHandValue(firsthand);
 
@@ -33,8 +37,19 @@ public class BlackJack extends Deal{
         //nested while loops to ask player if they want to hit
         int aces = 0;
         while(h.equals("y")){
+
+            startTime = System.nanoTime();
             newHand = hit(firsthand);
+            endTime = System.nanoTime();
+            time = endTime - startTime;
+            System.out.println("time for adding card to hand " + time + "ns");
+
+            startTime = System.nanoTime();
             aces = checkAce(newHand);
+            endTime = System.nanoTime();
+            time = endTime - startTime;
+            System.out.println("time for checking hand for aces " + time + "ns");
+
             //find last value in array
             while(!newHand[i].equals("")){
                 i++;
@@ -47,7 +62,13 @@ public class BlackJack extends Deal{
                 x++;
             }
             //if statement that removes 10 from total if player is over 21 and has an ace
+
+            startTime = System.nanoTime();
             int total = currentHandValue(newHand);
+            endTime = System.nanoTime();
+            time = endTime - startTime;
+            System.out.println("time for checking hand value " + time + "ns");
+
             if(total > 21 && aces > 0){
                 total -= 10;
             }
